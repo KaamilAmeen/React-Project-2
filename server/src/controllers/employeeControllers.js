@@ -1,66 +1,64 @@
-const pool = require('../config/db');
+const Employee = require('../config/dbConfig'); // Assuming Employee 
 
-// Get all employees
+// ✅ Get all employees
 const getAllEmployees = async (req, res) => {
     try {
-        const [rows] = await pool.query('SELECT * FROM employees');
-        res.json(rows);
+        const employees = await Employee.find();
+        res.json(employees);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 };
 
-// Get employee by ID
+// ✅ Get employee by ID
 const getEmployeeById = async (req, res) => {
     try {
-        const [rows] = await pool.query('SELECT * FROM employees WHERE id = ?', [req.params.id]);
-        if (rows.length === 0) return res.status(404).json({ message: 'Employee not found' });
-        res.json(rows[0]);
+        const employee = await Employee.findById(req.params.id);
+        if (!employee) return res.status(404).json({ message: 'Employee not found' });
+        res.json(employee);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 };
 
-// Create new employee
+// ✅ Create new employee
 const createEmployee = async (req, res) => {
     try {
-        const { name, email, phone, department_id, designation_id } = req.body;
-        const [result] = await pool.query(
-            'INSERT INTO employees (name, email, phone, department_id, designation_id) VALUES (?, ?, ?, ?, ?)',
-            [name, email, phone, department_id, designation_id]
-        );
-        res.status(201).json({ id: result.insertId, ...req.body });
+        const newEmployee = new Employee(req.body);
+        await newEmployee.save();
+        res.status(201).json(newEmployee);
     } catch (err) {
         res.status(400).json({ error: err.message });
     }
 };
 
-// Update employee
+// ✅ Update employee
 const updateEmployee = async (req, res) => {
     try {
-        const { name, email, phone, department_id, designation_id } = req.body;
-        const [result] = await pool.query(
-            'UPDATE employees SET name = ?, email = ?, phone = ?, department_id = ?, designation_id = ? WHERE id = ?',
-            [name, email, phone, department_id, designation_id, req.params.id]
+        const updatedEmployee = await Employee.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true }
         );
-        if (result.affectedRows === 0) return res.status(404).json({ message: 'Employee not found' });
-        res.json({ id: req.params.id, ...req.body });
+        if (!updatedEmployee) return res.status(404).json({ message: 'Employee not found' });
+        res.json(updatedEmployee);
     } catch (err) {
         res.status(400).json({ error: err.message });
     }
 };
 
-// Delete employee
+// ✅ Delete employee
 const deleteEmployee = async (req, res) => {
     try {
-        const [result] = await pool.query('DELETE FROM employees WHERE id = ?', [req.params.id]);
-        if (result.affectedRows === 0) return res.status(404).json({ message: 'Employee not found' });
+        const deletedEmployee = await Employee.findByIdAndDelete(req.params.id);
+        if (!deletedEmployee) return res.status(404).json({ message: 'Employee not found' });
         res.json({ message: 'Employee deleted' });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 };
 
+// ✅ Export functions
 module.exports = {
     getAllEmployees,
     getEmployeeById,
