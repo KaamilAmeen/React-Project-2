@@ -6,7 +6,7 @@ const addEmployeeDetails = () =>{
         const result = pool.query(query, []);
         return [result];
     } catch(err) {
-        console.error("Error in fetching the data: ", err);
+        console.error("Error in inserting the data: ", err);
     }
 }
 
