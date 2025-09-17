@@ -1,0 +1,8 @@
+USE COMPANY;
+DELIMITER &&
+CREATE PROCEDURE GetDesignation()
+BEGIN
+SELECT * FROM Designation;
+END &&
+DELIMITER ;
+CALL GetDesignation;

@@ -1,0 +1,9 @@
+USE COMPANY;
+DELIMITER &&
+CREATE PROCEDURE GetDepartment()
+BEGIN
+SELECT * FROM Department;
+END &&
+DELIMITER ;
+
+CALL GetDepartment;

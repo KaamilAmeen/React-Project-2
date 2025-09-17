@@ -1,0 +1,9 @@
+USE COMPANY;
+DELIMITER &&
+CREATE PROCEDURE GetLocations()
+BEGIN
+SELECT * FROM Locations;
+END &&
+DELIMITER ;
+
+CALL GetLocations;
