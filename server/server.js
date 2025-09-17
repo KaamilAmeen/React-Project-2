@@ -2,11 +2,13 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 const cors = require('cors');
+const employeeRoutes = require('../server/src/routes/employeeRoutes')
 dotenv.config();
 
 
 app.use(express.json());
 app.use(cors());
+
 
 
 const PORT = process.env.PORT;
