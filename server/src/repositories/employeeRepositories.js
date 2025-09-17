@@ -1,9 +1,9 @@
 const pool = require('../config/dbConfig');
 
-const addEmployeeDetails = () =>{
+const addEmployeeDetails = (empCode,name,deptId,desigId,salary,joinDate) =>{
     try {
-        const query = '';
-        const result = pool.query(query, []);
+        const query = 'CALL InsertEmployee(?,?,?,?,?,?)';
+        const result = pool.query(query, [empCode,name,deptId,desigId,salary,joinDate]);
         return [result];
     } catch(err) {
         console.error("Error in inserting the data: ", err);
@@ -12,7 +12,7 @@ const addEmployeeDetails = () =>{
 
 const getAllDetails = () =>{
     try {
-        const query = '';
+        const query = 'CALL AllEmployeeDetails()';
         const rows = pool.query(query);
         return [rows];
     } catch(err) {
