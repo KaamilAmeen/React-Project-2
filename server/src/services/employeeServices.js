@@ -1,8 +1,8 @@
-const repository = require('../repositories/employeeRepository');
+const repository = require('../repositories/employeeRepositories');
 
-const addEmployeeDetails = async (empCode,name,deptId,desigId,salary,joinDate) => {
+const addEmployeeDetails = async (empName,deptId,desigId,locationId,joinDate) => {
     try {
-        const result = await repository.addEmployeeDetails(empCode,name,deptId,desigId,salary,joinDate);
+        const result = await repository.addEmployeeDetails(empName,deptId,desigId,locationId,joinDate);
         return result;
     } catch(err) {
         console.error("Error in service layer while adding employee details: ", err);
@@ -12,7 +12,7 @@ const addEmployeeDetails = async (empCode,name,deptId,desigId,salary,joinDate) =
 const getAllDetails = async () => {
     try {
         const rows = await repository.getAllDetails();
-        return rows[0];
+        return rows;
     } catch(err) {
         console.error("Error in service layer while fetching employee details: ", err);
     }

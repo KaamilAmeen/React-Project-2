@@ -4,3 +4,5 @@ const controller = require('../controllers/employeeControllers');
 
 router.post('/add', controller.addEmployeeDetails);
 router.get('/listall', controller.getAllDetails);
+
+module.exports = router;

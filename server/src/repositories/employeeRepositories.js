@@ -1,20 +1,20 @@
 const pool = require('../config/dbConfig');
 
-const addEmployeeDetails = (empCode,name,deptId,desigId,salary,joinDate) =>{
+const addEmployeeDetails = async(empName,deptId,desigId,locationId,joinDate) =>{
     try {
-        const query = 'CALL InsertEmployee(?,?,?,?,?,?)';
-        const result = pool.query(query, [empCode,name,deptId,desigId,salary,joinDate]);
+        const query = 'CALL InsertEmployee(?,?,?,?,?)';
+        const result = await pool.query(query, [empName,deptId,desigId,locationId,joinDate]);
         return [result];
     } catch(err) {
         console.error("Error in inserting the data: ", err);
     }
 }
 
-const getAllDetails = () =>{
+const getAllDetails = async() =>{
     try {
         const query = 'CALL AllEmployeeDetails()';
-        const rows = pool.query(query);
-        return [rows];
+        const [rows] = await pool.query(query);
+        return rows[0];
     } catch(err) {
         console.error("Error in fetching the data: ", err);
     }
