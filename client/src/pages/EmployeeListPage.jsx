@@ -6,20 +6,30 @@ import empApi from "../api/Api.js";
 
 const EmployeeListPage = () => {
   const { employees, setEmployees } = useContext(EmployeeContext);
-  const [allEmp, setAllEmp] = useState(null)
+  const [employeesData, setEmployeesData] = useState([])
   const navigate = useNavigate();
 
- useEffect(() => {  
+ useEffect(() => { 
     fetchData();                
  },[]);
- const fetchData= ()=>{
+
+  // Function to fetch data
+ const fetchData= ()=>{ 
     empApi.getAllEmpDetails().then((response)=>{
-        setAllEmp(response.data);
+        const formattedData = response.data.map(eachData=>({
+          empId: eachData.emp_id,
+          empName: eachData.emp_name,
+          designationName: eachData.designation_name,
+          deptName: eachData.dept_name,
+          locationName: eachData.location_name
+        }))
+        
+        setEmployeesData(formattedData);
     }).catch((error)=>{
         console.error("Error fetching data:", error);
     });
  }
- console.log("allEmp",allEmp);
+ console.log(employeesData);
   const handleDelete = (id) => {
     setEmployees(employees.filter((emp) => emp.id !== id));
   };
@@ -31,25 +41,21 @@ const EmployeeListPage = () => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Employee Code</th>
             <th>Name</th>
             <th>Department</th>
             <th>Designation</th>
-            <th>Salary</th>
-            <th>Join Date</th>
+            <th>Location</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {employees.map((emp) => (
-            <tr key={emp.id}>
-              <td>{emp.id}</td>
-              <td>{emp.empCode}</td>
-              <td>{emp.name}</td>
-              <td>{emp.department}</td>
-              <td>{emp.designation}</td>
-              <td>{emp.salary}</td>
-              <td>{emp.joinDate}</td>
+          {employeesData.map((emp) => (
+            <tr key={emp.empId}>
+              <td>{emp.empId}</td>
+              <td>{emp.empName}</td>
+              <td>{emp.deptName}</td>
+              <td>{emp.designationName}</td>
+              <td>{emp.locationName}</td>
               <td>
                 <Button
                   variant="danger"
