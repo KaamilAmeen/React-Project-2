@@ -23,12 +23,13 @@ const EmployeeListPage = () => {
           deptName: eachData.dept_name,
           locationName: eachData.location_name
         }))
+        
         setEmployeesData(formattedData);
     }).catch((error)=>{
         console.error("Error fetching data:", error);
     });
  }
-
+ console.log(employeesData);
   const handleDelete = (id) => {
     setEmployees(employees.filter((emp) => emp.id !== id));
   };

@@ -9,7 +9,7 @@ const EmployeePage = () => {
   const [rows, setRows] = useState([]);
   const [idCounter, setIdCounter] = useState(1);
   const navigate = useNavigate();
-  console.log(empApi.getAllEmpDetails());    
+
   const handleAddRow = () => {
     setRows([
       ...rows,
