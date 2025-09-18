@@ -10,14 +10,13 @@ const EmployeeTable = ({ rows, onChange }) => {
     joinDate: ''
   });
 
-  const handleChange = (e) => {
-    setEmpDetails({...empDetails, [e.target.name]: e.target.value})
-  }
-  console.log(empDetails);
+  // const handleChange = (e) => {
+  //   setEmpDetails({...empDetails, [e.target.name]: e.target.value})
+  // }
 
-  const handleDesignIdChange = (e) =>{
-    setEmpDetails({...empDetails, desigId: e.target.value})
-  }
+  // const handleDesignIdChange = (e) =>{
+  //   setEmpDetails({...empDetails, desigId: e.target.value})
+  // }
 
   return (
     <Table bordered hover>
@@ -38,16 +37,16 @@ const EmployeeTable = ({ rows, onChange }) => {
             <td>
               <Form.Control
                 type="text"
-                value={empDetails.name}
+                value={row.empName}
                 name="empName"
-                onChange={handleChange}
+                onChange={(e) => onChange(index, "empName", e.target.value)}
               />
             </td>
             <td>
               <Form.Select
-                value={empDetails.deptId}
+                value={row.deptId}
                 name="deptId"
-                onChange={handleChange}
+                onChange={(e) => onChange(index, "empName", e.target.value)}
               >
                 <option value="">Select Dept</option>
                 <option value="1">IT</option>
@@ -64,8 +63,8 @@ const EmployeeTable = ({ rows, onChange }) => {
                 type="radio"
                 name="Manager"
                 value="1"
-                checked={empDetails.desigId === "1"}
-                onChange={handleDesignIdChange}
+                checked={row.desigId === "1"}
+                onChange={(e) => onChange(index, "empName", e.target.value)}
               />
               <Form.Check
                 inline
@@ -73,8 +72,8 @@ const EmployeeTable = ({ rows, onChange }) => {
                 type="radio"
                 name='Team Lead'
                 value="2"
-                checked={empDetails.desigId === "2"}
-                onChange={handleDesignIdChange}
+                checked={row.desigId === "2"}
+                onChange={(e) => onChange(index, "empName", e.target.value)}
               />
               <Form.Check
                 inline
@@ -82,8 +81,8 @@ const EmployeeTable = ({ rows, onChange }) => {
                 type="radio"
                 name="Software Engineer"
                 value="3"
-                checked={empDetails.desigId === "3"}
-                onChange={handleDesignIdChange}
+                checked={row.desigId === "3"}
+                onChange={(e) => onChange(index, "empName", e.target.value)}
               />
               <Form.Check
                 inline
@@ -91,8 +90,8 @@ const EmployeeTable = ({ rows, onChange }) => {
                 type="radio"
                 name="HR"
                 value="4"
-                checked={empDetails.desigId === "4"}
-                onChange={handleDesignIdChange}
+                checked={row.desigId === "4"}
+                onChange={(e) => onChange(index, "empName", e.target.value)}
               />
               <Form.Check
                 inline
@@ -100,15 +99,15 @@ const EmployeeTable = ({ rows, onChange }) => {
                 type="radio"
                 name="Intern"
                 value="5"
-                checked={empDetails.desigId === "5"}
-                onChange={handleDesignIdChange}
+                checked={row.desigId === "5"}
+                onChange={(e) => onChange(index, "empName", e.target.value)}
               />
             </td>
             <td>
               <Form.Select
-                value={empDetails.locationId}
+                value={row.locationId}
                 name="locationId"
-                onChange={handleChange}
+                onChange={(e) => onChange(index, "empName", e.target.value)}
               >
                 <option value="">Select Designation</option>
                 <option value="1">Bangalore</option>
@@ -121,9 +120,9 @@ const EmployeeTable = ({ rows, onChange }) => {
             <td>
               <Form.Control
                 type="date"
-                value={empDetails.joinDate}
+                value={row.joinDate}
                 name="joinDate"
-                onChange={handleChange}
+                onChange={(e) => onChange(index, "empName", e.target.value)}
               />
             </td>
           </tr>

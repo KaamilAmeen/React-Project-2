@@ -15,16 +15,17 @@ const EmployeePage = () => {
       ...rows,
       {
         id: idCounter,
-        empCode: "",
-        name: "",
-        department: "",
-        designation: "",
-        salary: "",
-        joinDate: "",
+        empName: '',
+        deptId: 0,
+        desigId: 0,
+        locationId: 0,
+        joinDate: ''
       },
     ]);
     setIdCounter(idCounter + 1);
   };
+
+  console.log(rows);
 
   const handleChange = (index, field, value) => {
     const updatedRows = [...rows];
