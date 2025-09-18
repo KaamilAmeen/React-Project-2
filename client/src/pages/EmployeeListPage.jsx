@@ -1,12 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext,useEffect, useState } from "react";
 import { Table, Button } from "react-bootstrap";
 import { EmployeeContext } from "../context/EmployeeContext.jsx";
 import { useNavigate } from "react-router-dom";
+import empApi from "../api/Api.js";
 
 const EmployeeListPage = () => {
   const { employees, setEmployees } = useContext(EmployeeContext);
+  const [allEmp, setAllEmp] = useState(null)
   const navigate = useNavigate();
 
+ useEffect(() => {  
+    fetchData();                
+ },[]);
+ const fetchData= ()=>{
+    empApi.getAllEmpDetails().then((response)=>{
+        setAllEmp(response.data);
+    }).catch((error)=>{
+        console.error("Error fetching data:", error);
+    });
+ }
+ console.log("allEmp",allEmp);
   const handleDelete = (id) => {
     setEmployees(employees.filter((emp) => emp.id !== id));
   };

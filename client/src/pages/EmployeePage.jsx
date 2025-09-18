@@ -1,15 +1,15 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useEffect} from "react";
 import { Button } from "react-bootstrap";
 import EmployeeTable from "../components/EmployeeTable.jsx";
 import { EmployeeContext } from "../context/EmployeeContext.jsx";
 import { useNavigate } from "react-router-dom";
-
+import empApi from "../api/Api.js";
 const EmployeePage = () => {
   const { employees, setEmployees } = useContext(EmployeeContext);
   const [rows, setRows] = useState([]);
   const [idCounter, setIdCounter] = useState(1);
   const navigate = useNavigate();
-
+  console.log(empApi.getAllEmpDetails());    
   const handleAddRow = () => {
     setRows([
       ...rows,
