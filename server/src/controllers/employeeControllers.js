@@ -24,8 +24,38 @@ const  addEmployeeDetails= async (req, res) => {
     }
 };
 
+const getDepartmentDetails = async (req, res) => {
+    try {
+        const rows = await service.getDepartmentDetails();
+        res.json(rows);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+const getDesignationDetails = async (req, res) => {
+    try {
+        const rows = await service.getDesignationDetails();
+        res.json(rows);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+const getLocationDetails = async (req, res) => {
+    try {
+        const rows = await service.getLocationDetails();
+        res.json(rows);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
 
 module.exports = {
     getAllDetails,
-    addEmployeeDetails
+    addEmployeeDetails,
+    getDepartmentDetails, 
+    getDesignationDetails,
+    getLocationDetails
 };
