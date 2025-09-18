@@ -1,9 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useEffect} from "react";
 import { Button } from "react-bootstrap";
 import EmployeeTable from "../components/EmployeeTable.jsx";
 import { EmployeeContext } from "../context/EmployeeContext.jsx";
 import { useNavigate } from "react-router-dom";
-
+import empApi from "../api/Api.js";
 const EmployeePage = () => {
   const { employees, setEmployees } = useContext(EmployeeContext);
   const [rows, setRows] = useState([]);
@@ -15,16 +15,17 @@ const EmployeePage = () => {
       ...rows,
       {
         id: idCounter,
-        empCode: "",
-        name: "",
-        department: "",
-        designation: "",
-        salary: "",
-        joinDate: "",
+        empName: '',
+        deptId: 0,
+        desigId: 0,
+        locationId: 0,
+        joinDate: ''
       },
     ]);
     setIdCounter(idCounter + 1);
   };
+
+  console.log(rows);
 
   const handleChange = (index, field, value) => {
     const updatedRows = [...rows];

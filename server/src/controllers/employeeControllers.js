@@ -55,5 +55,8 @@ const addEmployeeDetails = async (req, res) => {
 
 module.exports = {
     getAllDetails,
-    addEmployeeDetails
+    addEmployeeDetails,
+    getDepartmentDetails, 
+    getDesignationDetails,
+    getLocationDetails
 };

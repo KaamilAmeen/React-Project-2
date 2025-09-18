@@ -1,17 +1,32 @@
-import React from "react";
+import React, {useState} from "react";
 import { Table, Form } from "react-bootstrap";
 
 const EmployeeTable = ({ rows, onChange }) => {
+  const [empDetails, setEmpDetails] = useState({
+    empName: '',
+    deptId: 0,
+    desigId: 0,
+    locationId: 0,
+    joinDate: ''
+  });
+
+  // const handleChange = (e) => {
+  //   setEmpDetails({...empDetails, [e.target.name]: e.target.value})
+  // }
+
+  // const handleDesignIdChange = (e) =>{
+  //   setEmpDetails({...empDetails, desigId: e.target.value})
+  // }
+
   return (
     <Table bordered hover>
       <thead>
         <tr>
           <th>ID</th>
-          <th>Employee Code</th>
           <th>Name</th>
           <th>Department</th>
           <th>Designation</th>
-          <th>Salary</th>
+          <th>Location</th>
           <th>Join Date</th>
         </tr>
       </thead>
@@ -22,26 +37,23 @@ const EmployeeTable = ({ rows, onChange }) => {
             <td>
               <Form.Control
                 type="text"
-                value={row.empCode}
-                onChange={(e) => onChange(index, "empCode", e.target.value)}
-              />
-            </td>
-            <td>
-              <Form.Control
-                type="text"
-                value={row.name}
-                onChange={(e) => onChange(index, "name", e.target.value)}
+                value={row.empName}
+                name="empName"
+                onChange={(e) => onChange(index, "empName", e.target.value)}
               />
             </td>
             <td>
               <Form.Select
-                value={row.department}
-                onChange={(e) => onChange(index, "department", e.target.value)}
+                value={row.deptId}
+                name="deptId"
+                onChange={(e) => onChange(index, "empName", e.target.value)}
               >
                 <option value="">Select Dept</option>
-                <option value="HR">HR</option>
-                <option value="IT">IT</option>
-                <option value="Finance">Finance</option>
+                <option value="1">IT</option>
+                <option value="2">Finance</option>
+                <option value="3">HR</option>
+                <option value="4">Marketing</option>
+                <option value="5">Operations</option>
               </Form.Select>
             </td>
             <td>
@@ -49,42 +61,68 @@ const EmployeeTable = ({ rows, onChange }) => {
                 inline
                 label="Manager"
                 type="radio"
-                name={`designation-${row.id}`}
-                value="Manager"
-                checked={row.designation === "Manager"}
-                onChange={(e) => onChange(index, "designation", e.target.value)}
+                name="Manager"
+                value="1"
+                checked={row.desigId === "1"}
+                onChange={(e) => onChange(index, "empName", e.target.value)}
               />
               <Form.Check
                 inline
-                label="Developer"
+                label="Team Lead"
                 type="radio"
-                name={`designation-${row.id}`}
-                value="Developer"
-                checked={row.designation === "Developer"}
-                onChange={(e) => onChange(index, "designation", e.target.value)}
+                name='Team Lead'
+                value="2"
+                checked={row.desigId === "2"}
+                onChange={(e) => onChange(index, "empName", e.target.value)}
               />
               <Form.Check
                 inline
-                label="Analyst"
+                label="Software Engineer"
                 type="radio"
-                name={`designation-${row.id}`}
-                value="Analyst"
-                checked={row.designation === "Analyst"}
-                onChange={(e) => onChange(index, "designation", e.target.value)}
+                name="Software Engineer"
+                value="3"
+                checked={row.desigId === "3"}
+                onChange={(e) => onChange(index, "empName", e.target.value)}
+              />
+              <Form.Check
+                inline
+                label="HR"
+                type="radio"
+                name="HR"
+                value="4"
+                checked={row.desigId === "4"}
+                onChange={(e) => onChange(index, "empName", e.target.value)}
+              />
+              <Form.Check
+                inline
+                label="Intern"
+                type="radio"
+                name="Intern"
+                value="5"
+                checked={row.desigId === "5"}
+                onChange={(e) => onChange(index, "empName", e.target.value)}
               />
             </td>
             <td>
-              <Form.Control
-                type="number"
-                value={row.salary}
-                onChange={(e) => onChange(index, "salary", e.target.value)}
-              />
+              <Form.Select
+                value={row.locationId}
+                name="locationId"
+                onChange={(e) => onChange(index, "empName", e.target.value)}
+              >
+                <option value="">Select Designation</option>
+                <option value="1">Bangalore</option>
+                <option value="2">Chennai</option>
+                <option value="3">Hyderabad</option>
+                <option value="4">Mumbai</option>
+                <option value="5">Delhi</option>
+              </Form.Select>
             </td>
             <td>
               <Form.Control
                 type="date"
                 value={row.joinDate}
-                onChange={(e) => onChange(index, "joinDate", e.target.value)}
+                name="joinDate"
+                onChange={(e) => onChange(index, "empName", e.target.value)}
               />
             </td>
           </tr>
