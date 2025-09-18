@@ -20,40 +20,7 @@ const getAllDetails = async() =>{
     }
 }
 
-const getDepartmentDetails = async() =>{
-    try {
-        const query = 'CALL GetDepartment()';
-        const [rows] = await pool.query(query);
-        return rows[0];
-    } catch(err) {
-        console.error("Error in fetching the data: ", err);
-    }
-}
-
-const getDesignationDetails = async() =>{
-    try {
-        const query = 'CALL GetDesignation()';
-        const [rows] = await pool.query(query);
-        return rows[0];
-    } catch(err) {
-        console.error("Error in fetching the data: ", err);
-    }
-}
-
-const getLocationDetails = async() =>{
-    try {
-        const query = 'CALL GetLocations()';
-        const [rows] = await pool.query(query);
-        return rows[0];
-    } catch(err) {
-        console.error("Error in fetching the data: ", err);
-    }
-}
-
 module.exports = {
     addEmployeeDetails,
     getAllDetails,
-    getDepartmentDetails,
-    getDesignationDetails,
-    getLocationDetails
 }
