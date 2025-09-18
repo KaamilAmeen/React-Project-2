@@ -11,19 +11,47 @@ const getAllDetails = async (req, res) => {
 };
 
 // Create new employee
-const  addEmployeeDetails= async (req, res) => {
-    try {
-        const { empName,deptId,desigId,locationId,joinDate } = req.body;
-        if (!empName || !deptId || !desigId || !locationId || !joinDate) {
-            return res.status(400).json({ error: 'All fields are required' });
-        }
-        const [result] = await service.addEmployeeDetails(empName,deptId,desigId,locationId,joinDate);
-        res.status(201).json({message: 'Employee added successfully', ...req.body });
-    } catch (err) {
-        res.status(400).json({ error: err.message });
-    }
-};
+const addEmployeeDetails = async (req, res) => {
+  try {
+    const employees = Array.isArray(req.body) ? req.body : [req.body];
+    const results = [];
+    const errors = [];
 
+    for (const [index, emp] of employees.entries()) {
+      const { empName, deptId, desigId, locationId, joinDate } = emp;
+
+      // validation
+      if (!empName || !deptId || !desigId || !locationId || !joinDate) {
+        errors.push({ index, error: "All fields are required", employee: emp });
+        continue; // skip this one, continue with next
+      }
+
+      try {
+        const [result] = await service.addEmployeeDetails(
+          empName,
+          deptId,
+          desigId,
+          locationId,
+          joinDate
+        );
+        results.push({ ...emp, dbResult: result });
+      } catch (dbErr) {
+        errors.push({ index, error: dbErr.message, employee: emp });
+      }
+    }
+
+    res.status(201).json({
+      message: "Processing completed",
+      addedCount: results.length,
+      failedCount: errors.length,
+      addedEmployees: results,
+      failedEmployees: errors
+    });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
 
 module.exports = {
     getAllDetails,
