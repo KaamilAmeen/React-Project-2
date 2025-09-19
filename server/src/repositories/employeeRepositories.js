@@ -20,7 +20,19 @@ const getAllDetails = async() =>{
     }
 }
 
+const removeEmp = async (empId) =>{
+    try {
+        const query = 'CALL RemoveEmployee(?)';
+        const result = await pool.query(query, [empId]);
+        return result
+    } catch (err) {
+        console.error("ERROR: ",err)
+    }
+}
+
 module.exports = {
     addEmployeeDetails,
     getAllDetails,
+    removeEmp
+
 }

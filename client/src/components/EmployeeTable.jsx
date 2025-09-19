@@ -2,13 +2,13 @@ import React, {useState} from "react";
 import { Table, Form } from "react-bootstrap";
 
 const EmployeeTable = ({ rows, onChange }) => {
-  const [empDetails, setEmpDetails] = useState({
-    empName: '',
-    deptId: 0,
-    desigId: 0,
-    locationId: 0,
-    joinDate: ''
-  });
+  // const [empDetails, setEmpDetails] = useState({
+  //   empName: '',
+  //   deptId: 0,
+  //   desigId: 0,
+  //   locationId: 0,
+  //   joinDate: ''
+  // });
 
   // const handleChange = (e) => {
   //   setEmpDetails({...empDetails, [e.target.name]: e.target.value})
@@ -46,7 +46,7 @@ const EmployeeTable = ({ rows, onChange }) => {
               <Form.Select
                 value={row.deptId}
                 name="deptId"
-                onChange={(e) => onChange(index, "empName", e.target.value)}
+                onChange={(e) => onChange(index, "deptId", e.target.value)}
               >
                 <option value="">Select Dept</option>
                 <option value="1">IT</option>
@@ -64,7 +64,7 @@ const EmployeeTable = ({ rows, onChange }) => {
                 name="Manager"
                 value="1"
                 checked={row.desigId === "1"}
-                onChange={(e) => onChange(index, "empName", e.target.value)}
+                onChange={(e) => onChange(index, "desigId", e.target.value)}
               />
               <Form.Check
                 inline
@@ -73,7 +73,7 @@ const EmployeeTable = ({ rows, onChange }) => {
                 name='Team Lead'
                 value="2"
                 checked={row.desigId === "2"}
-                onChange={(e) => onChange(index, "empName", e.target.value)}
+                onChange={(e) => onChange(index, "desigId", e.target.value)}
               />
               <Form.Check
                 inline
@@ -82,7 +82,7 @@ const EmployeeTable = ({ rows, onChange }) => {
                 name="Software Engineer"
                 value="3"
                 checked={row.desigId === "3"}
-                onChange={(e) => onChange(index, "empName", e.target.value)}
+                onChange={(e) => onChange(index, "desigId", e.target.value)}
               />
               <Form.Check
                 inline
@@ -91,7 +91,7 @@ const EmployeeTable = ({ rows, onChange }) => {
                 name="HR"
                 value="4"
                 checked={row.desigId === "4"}
-                onChange={(e) => onChange(index, "empName", e.target.value)}
+                onChange={(e) => onChange(index, "desigId", e.target.value)}
               />
               <Form.Check
                 inline
@@ -100,14 +100,14 @@ const EmployeeTable = ({ rows, onChange }) => {
                 name="Intern"
                 value="5"
                 checked={row.desigId === "5"}
-                onChange={(e) => onChange(index, "empName", e.target.value)}
+                onChange={(e) => onChange(index, "desigId", e.target.value)}
               />
             </td>
             <td>
               <Form.Select
                 value={row.locationId}
                 name="locationId"
-                onChange={(e) => onChange(index, "empName", e.target.value)}
+                onChange={(e) => onChange(index, "locationId", e.target.value)}
               >
                 <option value="">Select Designation</option>
                 <option value="1">Bangalore</option>
@@ -122,7 +122,7 @@ const EmployeeTable = ({ rows, onChange }) => {
                 type="date"
                 value={row.joinDate}
                 name="joinDate"
-                onChange={(e) => onChange(index, "empName", e.target.value)}
+                onChange={(e) => onChange(index, "joinDate", e.target.value)}
               />
             </td>
           </tr>
