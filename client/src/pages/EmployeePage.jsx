@@ -4,6 +4,7 @@ import EmployeeTable from "../components/EmployeeTable.jsx";
 import { EmployeeContext } from "../context/EmployeeContext.jsx";
 import { useNavigate } from "react-router-dom";
 import empApi from "../api/Api.js";
+
 const EmployeePage = () => {
   const { employees, setEmployees } = useContext(EmployeeContext);
   const [rows, setRows] = useState([]);
@@ -34,7 +35,7 @@ const EmployeePage = () => {
   };
 
   const handleSubmit = () => {
-    setEmployees([...employees, ...rows]);
+    empApi.addEmployeeDetails(rows);
     setRows([]);
     navigate("/list");
   };

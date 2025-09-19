@@ -30,9 +30,12 @@ const EmployeeListPage = () => {
     });
  }
  console.log(employeesData);
-  const handleDelete = (id) => {
-    setEmployees(employees.filter((emp) => emp.id !== id));
+
+  const handleDelete = (empId) => {
+    fetchData();
+    empApi.removeEmployee(empId);
   };
+
 
   return (
     <div className="container mt-4">
@@ -60,7 +63,7 @@ const EmployeeListPage = () => {
                 <Button
                   variant="danger"
                   size="sm"
-                  onClick={() => handleDelete(emp.id)}
+                  onClick={() => handleDelete(emp.empId)}
                 >
                   Delete
                 </Button>

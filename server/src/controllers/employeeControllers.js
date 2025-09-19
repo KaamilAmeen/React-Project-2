@@ -53,7 +53,18 @@ const addEmployeeDetails = async (req, res) => {
   }
 };
 
+const removeEmp = async (req, res) =>{
+    try {
+        const empId = req.params.id;
+        await service.removeEmp(empId);
+        res.json({message: "Emp row deleted successfully"});
+    } catch(err) {
+        res.status(500).json({message: err.message})
+    }
+}
+
 module.exports = {
     getAllDetails,
-    addEmployeeDetails
+    addEmployeeDetails,
+    removeEmp
 };

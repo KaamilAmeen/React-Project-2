@@ -23,7 +23,11 @@ const getLocationDetails = () => {
 }
 
 const addEmployeeDetails = (formData) => {
-    API.post('/add');
+    API.post('/add', formData);
+}
+
+const removeEmployee = (empId) => {
+    API.delete(`/remove/${empId}`)
 }
 
 const empApi={
@@ -31,6 +35,7 @@ const empApi={
     getDepartmentDetails,
     getDesignationDetails,
     getLocationDetails,
-    addEmployeeDetails
+    addEmployeeDetails, 
+    removeEmployee
 }
 export default empApi;

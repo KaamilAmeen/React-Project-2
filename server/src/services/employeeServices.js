@@ -18,7 +18,17 @@ const getAllDetails = async () => {
     }
 }
 
+const removeEmp = async (empId) =>{
+    try {
+        const result = await repository.removeEmp(empId);
+        return result;
+    } catch (err) {
+        console.error("ERROR: ", err)
+    }
+}
+
 module.exports = {
     addEmployeeDetails,
     getAllDetails,
+    removeEmp
 }
