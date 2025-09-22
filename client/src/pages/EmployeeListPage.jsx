@@ -35,8 +35,12 @@ const EmployeeListPage = () => {
     fetchData();
     empApi.removeEmployee(empId);
   };
+  const handleEdit= (empId) => {
+    fetchData();
+    navigate(`/edit/${empId}`);
+  } 
 
-
+ 
   return (
     <div className="container mt-4">
       <h3>Stored Employees</h3>
@@ -60,11 +64,19 @@ const EmployeeListPage = () => {
               <td>{emp.designationName}</td>
               <td>{emp.locationName}</td>
               <td>
+                 <Button
+                  variant="primary"
+                  size="sm"
+                  className="me-2"
+                  onClick={() => handleEdit(emp.empId)}
+                >
+                  Edit
+                </Button>
                 <Button
                   variant="danger"
                   size="sm"
                   onClick={() => handleDelete(emp.empId)}
-                >
+                >      
                   Delete
                 </Button>
               </td>
@@ -81,3 +93,4 @@ const EmployeeListPage = () => {
 };
 
 export default EmployeeListPage;
+  

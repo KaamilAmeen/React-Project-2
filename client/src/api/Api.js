@@ -36,6 +36,7 @@ const empApi={
     getDesignationDetails,
     getLocationDetails,
     addEmployeeDetails, 
-    removeEmployee
+    removeEmployee,
+
 }
 export default empApi;
