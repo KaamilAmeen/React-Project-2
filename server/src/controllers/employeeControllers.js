@@ -63,8 +63,23 @@ const removeEmp = async (req, res) =>{
     }
 }
 
+const updateEmp = async (req, res) =>{
+  try {
+    const empId = req.params.id;
+    const {empName, desigId, deptId, locId, joinDate} = req.body;
+    await service.updateEmp(empId, empName, desigId, deptId, locId, joinDate);
+    if (!empId || !empName || !desigId || !deptId || !locId || !joinDate) {
+      res.status(400).json({message: "Missing Required Fields!"});
+    }
+    res.json({message: "Emp row updated successfully"});
+  } catch(err){
+    res.status(500).json({message: err.message});
+  }
+}
+
 module.exports = {
     getAllDetails,
     addEmployeeDetails,
-    removeEmp
+    removeEmp,
+    updateEmp
 };

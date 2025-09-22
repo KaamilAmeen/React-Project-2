@@ -27,8 +27,18 @@ const removeEmp = async (empId) =>{
     }
 }
 
+const updateEmp = async (empId, empName, desigId, deptId, locId, joinDate) =>{
+    try {
+        const result = await repository.updateEmp(empId, empName, desigId, deptId, locId, joinDate);
+        return result;
+    } catch(err){
+        console.error("Error: ", err);
+    }
+}
+
 module.exports = {
     addEmployeeDetails,
     getAllDetails,
-    removeEmp
+    removeEmp,
+    updateEmp
 }
