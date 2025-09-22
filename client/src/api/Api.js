@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+        
 const apiBaseUrl = "http://localhost:5000/api";
 
 const API = axios.create({
@@ -41,6 +41,10 @@ const empApi={
     getLocationDetails,
     addEmployeeDetails, 
     removeEmployee,
+<<<<<<< HEAD
+
+=======
     updateEmp
+>>>>>>> 8e0f7c94a5d58ede5403a65ab16df5c6bc74f762
 }
 export default empApi;
