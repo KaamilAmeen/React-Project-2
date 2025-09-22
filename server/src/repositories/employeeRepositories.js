@@ -30,9 +30,19 @@ const removeEmp = async (empId) =>{
     }
 }
 
+const updateEmp = async (empId, empName, desigId, deptId, locId, joinDate) => {
+    try {
+        const query = 'CALL UpdateEmployee(?,?,?,?,?,?)';
+        const result = await pool.query(query, [empId, empName, desigId, deptId, locId, joinDate])
+        return result;
+    } catch(err){
+        console.error(err);
+    }
+}
+
 module.exports = {
     addEmployeeDetails,
     getAllDetails,
-    removeEmp
-
+    removeEmp,
+    updateEmp
 }
