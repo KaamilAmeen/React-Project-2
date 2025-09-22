@@ -11,23 +11,27 @@ const getAllEmpDetails = ()=>(
 )
 
 const getDepartmentDetails = () => {
-    API.get('/listdept');
+    return API.get('/listdept');
 }
 
 const getDesignationDetails = () => {
-    API.get('/listdesign');
+    return API.get('/listdesign');
 }
 
 const getLocationDetails = () => {
-    API.get('/listloc');
+    return API.get('/listloc');
 }
 
 const addEmployeeDetails = (formData) => {
-    API.post('/add', formData);
+    return API.post('/add', formData);
 }
 
 const removeEmployee = (empId) => {
-    API.delete(`/remove/${empId}`)
+    return API.delete(`/remove/${empId}`)
+}
+
+const updateEmp = (empId, updateFormData) => {
+    return API.put(`/update/${empId}`, updateFormData)
 }
 
 const empApi={
@@ -36,6 +40,7 @@ const empApi={
     getDesignationDetails,
     getLocationDetails,
     addEmployeeDetails, 
-    removeEmployee
+    removeEmployee,
+    updateEmp
 }
 export default empApi;
